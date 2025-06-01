@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Dream Station: The Road to Success</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Verdana, sans-serif;
+        }
+
+        body{
+            background-color: #a6c9ce;
+            color: #242d35;
+            overflow-x: hidden;
+        }
+
+        nav{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            background-color: #667384;
+            box-shadow: 0 2px 10px #0000001a;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .MyLogo img{
+            height: auto;
+            width: 35px;
+        }
+
+        .Navigation{
+            display: flex;
+            gap: 30px;
+        }
+
+        .Navigation a{
+            text-decoration: none;
+            color: #a6c9ce;
+            font-weight: 500;
+            transition: 0.3s;
+            padding: 5px 10px;
+            border-radius: 99px;
+        }
+
+        .Navigation a:hover{
+            background: #242d35;
+        }    
+
+        .image-btn{
+            padding: 2px 4px;
+            border: none;
+            border-radius: 200px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .image-btn:hover{
+            background-color: #242d35;
+        }
+
+        .image-btn img {
+            width: 30px; 
+            height: auto;
+        }
+
+        .Welcome{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+            margin-top: 50px;
+        }
+
+        .Welcome h1{
+            font-size: 45px;
+            margin-bottom: 15px;
+            color: #26415a;
+        }
+
+        .Welcome h2{
+            font-size: 35px;
+            margin-bottom: 20px;
+            color: #26415a;
+        }
+
+        .floating-icon{
+            position: absolute;
+            font-size: 36px;
+            color: #fce9d7;
+            opacity: 0.7;
+            transition: all 0.5s ease;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .floating-icon:hover {
+            transform: scale(1.5); /* Enlarges the icon */
+            opacity: 1;
+            animation: shake 0.3s ease-in-out infinite; /* Adds shake effect */
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: scale(1.5) rotate(0deg); }
+            25% { transform: scale(1.5) rotate(5deg); }
+            50% { transform: scale(1.5) rotate(-5deg); }
+            75% { transform: scale(1.5) rotate(5deg); }
+        }
+
+        .icon1 { top: 30%; left: 15%; animation-delay: 0s; }
+        .icon2 { top: 60%; left: 80%; animation-delay: 1s; }
+        .icon3 { top: 20%; right: 20%; animation-delay: 2s; }
+        .icon4 { bottom: 30%; left: 25%; animation-delay: 3s; }
+        .icon5 { top: 70%; right: 30%; animation-delay: 4s; }
+        .icon6 { top: 20%; right: 50%; animation-delay: 1s;}
+
+        .business-card-section{
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 20px;
+            position: relative;
+        }
+
+        .business-card {
+            width: 600px;
+            max-width: 100%;
+            background: #eae9e9;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            opacity: 0;
+            transform: translateY(50px) scale(0.5);
+        }
+
+        .business-card.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .card-header {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .card-description {
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #555;
+            line-height: 1.6;
+            font-size: 13px;
+        }
+
+        .business-card img{
+           width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+            border: 3px solid #4a6fa5;
+        }
+
+        .profile-info h2 {
+            font-size: 20px;
+            color: #4a6fa5;
+            margin-bottom: 5px;
+        }
+
+        .profile-info p {
+            color: #666;
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+
+        footer{
+            background-color: #667384;
+            color: #a6c9ce;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-content{
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-logo img{
+            width: 40px;
+            height: auto;
+            margin-bottom: 5px;
+        }
+
+        .footer-info p{
+            color: #a6c9ce;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+    </style>
+    </head>
+
+    <body>
+        <nav>
+        <a href="Homepage.html">
+            <div class="MyLogo"><img src="logo.png"></div>
+            </a>
+            <div class="Navigation">
+                <a href="Homepage.html">Home</a>
+                <a href="Dream Career.html">Dream Career</a>
+                <a href="Step by Step Guide.html">Step by Step Guide</a>
+                <a href="Influential Professionals.html">Influential Professionals</a>
+            </div>
+            <a href="Profile.html">
+            <button class="image-btn">
+                <img src="profile.png" alt="Click Me">
+            </button>
+            </a>
+        </nav>
+
+        <section class="Welcome">
+            <h1>Welcome to my page!</h1>
+            <h2>Let's start by getting to know me.</h2>
+
+            <i class="fas fa-star floating-icon icon1"></i>
+            <i class="fas fa-heart floating-icon icon2"></i>
+            <i class="fas fa-cloud floating-icon icon3"></i>
+            <i class="fas fa-bolt floating-icon icon4"></i>
+            <i class="fas fa-moon floating-icon icon5"></i>    
+            <i class="fas fa-leaf floating-icon icon6"></i>
+        </section>
+
+        <section class="business-card-section">
+            <div class="business-card">
+                <div class="card-header">
+                <img src="Pic.jpg" alt="Picture of Tan Le Hang" class="profile-pic">
+                <div class="profile-info">
+                    <h2>TAN LE HANG</h2>
+                    <p>Gender: Female</p>
+                    <p>Age: 22</p>
+                    <p>Hometown: Penang</p>
+                    <p>Studied at: University Malaysia Perlis (UniMAP)</p>
+                </div>
+                </div>
+                <div class="card-description">
+                    <p>Hi there! I'm majoring in <i>New Media Communication</i> at University Malaysia Perlis (UniMAP). The purpose of this website is to introduce my ideal profession in the future. So, let's take a closer look at my dream job.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo"><img src="logo.png"></div>
+                <div class="footer-info">
+                    <p>TAN LE HANG © 2025 My Personal Page. All rights reserved.</p>
+                <p>Contact: s231420207@studentmail.unimap.edu.my</p>
+                </div>
+            </div>
+        </footer>
+
+    <script>
+        // Select business card elements
+        const businessCard = document.querySelector('.business-card');
+        const businessCardSection = document.querySelector('.business-card-section');
+
+        // Fade-in effect when scrolled into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    businessCard.classList.add('visible'); // Business card appears
+                }
+            });
+        }, { threshold: 0.3 });
+
+        observer.observe(businessCardSection);
+
+        // Zoom-in and zoom-out effect while scrolling
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY; // Get current scroll position
+            const cardPosition = businessCardSection.offsetTop; // Get business card section position
+            const cardHeight = businessCardSection.offsetHeight;
+            const windowHeight = window.innerHeight;
+
+            // If user is reading the business card (inside the section)
+            if (scrollPosition > cardPosition - windowHeight / 2 && scrollPosition < cardPosition + cardHeight / 2) {
+                businessCard.style.transform = "scale(1.2)"; // Zoom in
+            } else {
+                businessCard.style.transform = "scale(1)"; // Zoom out when scrolling past
+            }
+        });
+
+        window.addEventListener("scroll", () => {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+                document.body.style.transition = "opacity 3s ease-out";
+                document.body.style.opacity = "0"; // Fade out effect
+                setTimeout(() => {
+                    window.location.href = "Dream Career.html"; // Load next page
+                }, 500);
+            }
+        });
+    </script>
+    </body>
+</html>
+

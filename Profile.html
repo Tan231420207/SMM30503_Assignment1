@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Dream Station: The Road to Success</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Verdana, sans-serif;
+        }
+
+        body{
+            background-color: #a6c9ce;
+            color: #242d35;
+            overflow-x: hidden;
+        }
+
+        nav{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            background-color: #667384;
+            box-shadow: 0 2px 10px #0000001a;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .MyLogo img{
+            height: auto;
+            width: 35px;
+        }
+
+        .Navigation{
+            display: flex;
+            gap: 30px;
+        }
+
+        .Navigation a{
+            text-decoration: none;
+            color: #a6c9ce;
+            font-weight: 500;
+            transition: 0.3s;
+            padding: 5px 10px;
+            border-radius: 99px;
+        }
+
+        .Navigation a:hover{
+            background: #242d35;
+        }    
+
+        .image-btn{
+            padding: 2px 4px;
+            border: none;
+            border-radius: 200px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .image-btn:hover{
+            background-color: #242d35;
+        }
+
+        .image-btn img {
+            width: 30px; 
+            height: auto;
+        }
+
+        .welcome-section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+            margin-top: 70px;
+        }
+
+        .welcome-section h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .fas {
+            font-size: 50px;
+            color: navy;
+        }
+
+        .floating-icon{
+            position: absolute;
+            font-size: 36px;
+            color: #fce9d7;
+            opacity: 0.7;
+            transition: all 0.5s ease;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .floating-icon:hover {
+            transform: scale(1.5); /* Enlarges the icon */
+            opacity: 1;
+            animation: shake 0.3s ease-in-out infinite; /* Adds shake effect */
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: scale(1.5) rotate(0deg); }
+            25% { transform: scale(1.5) rotate(5deg); }
+            50% { transform: scale(1.5) rotate(-5deg); }
+            75% { transform: scale(1.5) rotate(5deg); }
+        }
+
+        .icon1 { top: 30%; left: 15%; animation-delay: 0s; }
+        .icon2 { top: 60%; left: 80%; animation-delay: 1s; }
+        .icon3 { top: 20%; right: 20%; animation-delay: 2s; }
+        .icon4 { bottom: 30%; left: 25%; animation-delay: 3s; }
+        .icon5 { top: 70%; right: 30%; animation-delay: 4s; }
+        .icon6 { top: 20%; right: 50%; animation-delay: 1s;}
+
+        .contact-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10%;
+            position: relative;
+        }
+
+        .contact-info {
+            max-width: 40%;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 1s ease;
+        }
+
+        .contact-info.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .contact-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-detail {
+            font-size: 1.5rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .copy-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 0.3rem 0.8rem;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background-color: var(--secondary);
+        }
+
+        .model-container {
+            width: 400px;
+            height: 400px;
+            perspective: 1000px;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 1s ease;
+        }
+
+        .model-container.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .phone-model, .email-model {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotate 10s infinite linear;
+        }
+
+        .email-model {
+            animation-delay: 0.5s;
+        }
+
+        .model-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 10rem;
+            color: var(--primary);
+            backface-visibility: hidden;
+        }
+
+        .phone-front { transform: rotateY(0deg) translateZ(200px); }
+        .phone-back { transform: rotateY(180deg) translateZ(200px); }
+        .phone-right { transform: rotateY(90deg) translateZ(200px); }
+        .phone-left { transform: rotateY(-90deg) translateZ(200px); }
+        .phone-top { transform: rotateX(90deg) translateZ(200px); }
+        .phone-bottom { transform: rotateX(-90deg) translateZ(200px); }
+
+        /* Email Model Faces */
+        .email-front { transform: rotateY(0deg) translateZ(200px); }
+        .email-back { transform: rotateY(180deg) translateZ(200px); }
+        .email-right { transform: rotateY(90deg) translateZ(200px); }
+        .email-left { transform: rotateY(-90deg) translateZ(200px); }
+        .email-top { transform: rotateX(90deg) translateZ(200px); }
+        .email-bottom { transform: rotateX(-90deg) translateZ(200px); }
+
+        @keyframes rotate {
+            from { transform: rotateY(0); }
+            to { transform: rotateY(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .contact-section {
+                flex-direction: column;
+                padding: 5rem 2rem;
+                text-align: center;
+            }
+            
+            .contact-info {
+                max-width: 100%;
+                margin-bottom: 3rem;
+            }
+            
+            .model-container {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .welcome-section h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-title {
+                font-size: 2rem;
+            }
+            
+            .contact-detail {
+                font-size: 1.2rem;
+                justify-content: center;
+            }
+        }
+
+        p{
+            font-size: 20px;
+        }
+
+        h2{
+            font-size: 10px;
+        }
+
+        footer{
+            background-color: #667384;
+            color: #a6c9ce;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-content{
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-logo img{
+            width: 40px;
+            height: auto;
+            margin-bottom: 5px;
+        }
+
+        .footer-info p{
+            color: #a6c9ce;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+    </style>
+    </head>
+
+    <body>
+        <nav>
+            <a href="Homepage.html">
+            <div class="MyLogo"><img src="logo.png"></div>
+            </a>
+            <div class="Navigation">
+                <a href="Homepage.html">Home</a>
+                <a href="Dream Career.html">Dream Career</a>
+                <a href="Step by Step Guide.html">Step by Step Guide</a>
+                <a href="Influential Professionals.html">Influential Professionals</a>
+            </div>
+            <a href="Profile.html">
+            <button class="image-btn">
+                <img src="profile.png" alt="Click Me">
+            </button>
+            </a>
+        </nav>
+
+        <section class="welcome-section">
+            <h1>My Contact</h1>
+            <i class="fas fa-chevron-down" style="font-size: 20px; color:#fce9d7; margin-top: 2rem; animation: bounce 2s infinite;"></i>
+            <i class="fas fa-star floating-icon icon1"></i>
+            <i class="fas fa-heart floating-icon icon2"></i>
+            <i class="fas fa-cloud floating-icon icon3"></i>
+            <i class="fas fa-bolt floating-icon icon4"></i>
+            <i class="fas fa-moon floating-icon icon5"></i>    
+            <i class="fas fa-leaf floating-icon icon6"></i>
+        </section>
+
+        <section class="contact-section" id="phone-section">
+            <div class="contact-info">
+                <h2 class="contact-title">Phone Number</h2>
+                <div class="contact-detail">
+                    <p id="phone-number">+60 16-4548118</p>
+                    <button class="copy-btn" onclick="copyToClipboard('phone-number')">Copy</button>
+                </div>
+            </div>
+            <div class="model-container">
+                <div class="phone-model">
+                    <div class="model-face phone-front"><i class="fas fa-phone"></i></div>
+                    <div class="model-face phone-back"><i class="fas fa-mobile-alt"></i></div>
+                    <div class="model-face phone-right"><i class="fas fa-phone-volume"></i></div>
+                    <div class="model-face phone-left"><i class="fas fa-phone-square"></i></div>
+                    <div class="model-face phone-top"><i class="fas fa-phone-alt"></i></div>
+                    <div class="model-face phone-bottom"><i class="fas fa-phone-slash"></i></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section" id="email-section">
+            <div class="model-container">
+                <div class="email-model">
+                    <div class="model-face email-front"><i class="fas fa-at"></i></div>
+                    <div class="model-face email-back"><i class="fas fa-envelope"></i></div>
+                    <div class="model-face email-right"><i class="fas fa-mail-bulk"></i></div>
+                    <div class="model-face email-left"><i class="fas fa-inbox"></i></div>
+                    <div class="model-face email-top"><i class="fas fa-paper-plane"></i></div>
+                    <div class="model-face email-bottom"><i class="fas fa-envelope-open-text"></i></div>
+                </div>
+            </div>
+            <div class="contact-info" style="text-align: right;">
+                <h2 class="contact-title">Email</h2>
+                <div class="contact-detail">
+                    <p id="email-address">s231420207@studentmail.unimap.edu.my</p>
+                    <button class="copy-btn" onclick="copyToClipboard('email-address')">Copy</button>
+
+                </div>
+            </div>
+        </section>        
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo"><img src="logo.png"></div>
+                <div class="footer-info">
+                    <p>TAN LE HANG © 2025 My Personal Page. All rights reserved.</p>
+                <p>Contact: s231420207@studentmail.unimap.edu.my</p>
+                </div>
+            </div>
+        </footer>
+
+    <script>
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.querySelector(".copy-btn"); 
+                btn.innerText = 'Copied!';
+                setTimeout(() => {
+                    btn.innerText = 'Copy';
+                }, 2000);
+            }).catch(err => {
+                console.error("Error copying text: ", err);
+            });
+        }
+
+
+        // Scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateOnScroll = () => {
+                // Phone section
+                const phoneSection = document.getElementById('phone-section');
+                const phoneRect = phoneSection.getBoundingClientRect();
+                if (phoneRect.top < window.innerHeight * 0.75) {
+                    phoneSection.querySelector('.contact-info').classList.add('visible');
+                    phoneSection.querySelector('.model-container').classList.add('visible');
+                }
+
+                // Email section
+                const emailSection = document.getElementById('email-section');
+                const emailRect = emailSection.getBoundingClientRect();
+                if (emailRect.top < window.innerHeight * 0.75) {
+                    emailSection.querySelector('.contact-info').classList.add('visible');
+                    emailSection.querySelector('.model-container').classList.add('visible');
+                }
+            };
+
+            // Initial check
+            animateOnScroll();
+            
+            // Listen for scroll events
+            window.addEventListener('scroll', animateOnScroll);
+        });
+    </script>
+    </body>
+</html>

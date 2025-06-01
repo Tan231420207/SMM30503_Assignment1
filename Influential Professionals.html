@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Influential Professionals</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Verdana, sans-serif;
+        }
+
+        body{
+            background-color: #a6c9ce;
+            color: #242d35;
+            overflow-x: hidden;
+        }
+
+        nav{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            background-color: #667384;
+            box-shadow: 0 2px 10px #0000001a;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .MyLogo img{
+            height: auto;
+            width: 35px;
+        }
+
+        .Navigation{
+            display: flex;
+            gap: 30px;
+        }
+
+        .Navigation a{
+            text-decoration: none;
+            color: #a6c9ce;
+            font-weight: 500;
+            transition: 0.3s;
+            padding: 5px 10px;
+            border-radius: 99px;
+        }
+
+        .Navigation a:hover{
+            background: #242d35;
+        }    
+
+        .image-btn{
+            padding: 2px 4px;
+            border: none;
+            border-radius: 200px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .image-btn:hover{
+            background-color: #242d35;
+        }
+
+        .image-btn img {
+            width: 30px; 
+            height: auto;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 75vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 70px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+
+        .hero-content {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            max-width: 50%;
+        }
+
+        .meteor-container {
+            position: relative;
+            width: 40%;
+            height: 300px;
+        }
+
+        .meteor {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+            animation: meteor 3s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes meteor {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(300px, 300px);
+                opacity: 0;
+            }
+        }
+
+        /* Artist Sections */
+        .artist-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .artist-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .artist-container {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .artist-image-container {
+            width: 40%;
+            position: relative;
+        }
+
+        .artist-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .artist-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .artist-info {
+            width: 60%;
+        }
+
+        .artist-name {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .artist-bio {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--dark);
+            margin-bottom: 2rem;
+        }
+
+        .artworks-container {
+            display: none;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .artworks-container.visible {
+            display: grid;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .artwork {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 250px;
+        }
+
+        .artwork-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .artwork:hover .artwork-image {
+            transform: scale(1.05);
+        }
+
+        .artwork-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+        }
+
+        .artwork-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .artwork-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer{
+            background-color: #667384;
+            color: #a6c9ce;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-content{
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-logo img{
+            width: 40px;
+            height: auto;
+            margin-bottom: 5px;
+        }
+
+        .footer-info p{
+            color: #a6c9ce;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-title {
+                max-width: 100%;
+                margin-bottom: 2rem;
+            }
+            
+            .meteor-container {
+                width: 100%;
+            }
+            
+            .artist-container {
+                flex-direction: column;
+            }
+            
+            .artist-image-container,
+            .artist-info {
+                width: 100%;
+            }
+            
+            .artworks-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+       <a href="Homepage.html">
+            <div class="MyLogo"><img src="logo.png"></div>
+            </a>
+            <div class="Navigation">
+                <a href="Homepage.html">Home</a>
+                <a href="Dream Career.html">Dream Career</a>
+                <a href="Step by Step Guide.html">Step by Step Guide</a>
+                <a href="Influential Professionals.html">Influential Professionals</a>
+            </div>
+            <a href="Profile.html">
+            <button class="image-btn">
+                <img src="profile.png" alt="Click Me">
+            </button>
+            </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-bg" style="background-image: url('profesional.jpg');"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Influential Professionals</h1>
+            <div class="meteor-container" id="meteor-shower"></div>
+        </div>
+    </section>
+
+    <!-- Artist Section 1 -->
+    <section class="artist-section" id="artist1">
+        <div class="artist-container">
+            <div class="artist-image-container">
+                <img src="kevinfeige.jpg" 
+                     alt="kevinfeige" class="artist-image" id="artist1-image">
+            </div>
+            <div class="artist-info">
+                <h2 class="artist-name">Kevin Feige</h2>
+                <p class="artist-bio">
+                    Kevin Feige is an American film and television producer who is the president of Marvel Studios and the chief creative officer of Marvel Entertainment. He is the mastermind behind the Marvel Cinematic Universe (MCU), an interconnected universe of superhero films that has captivated audiences worldwide.
+                    Some of his most successful films include The Avengers, Black Panther, and Spider-Man: Far From Home among several others.
+                    Feige is known for his visionary leadership, collaborative approach, and keen understanding of what makes a successful superhero film. He has won numerous awards, including the Motion Picture Showman of the Year award from the ICG Publicists Guild and the Academy Award for Best Picture for producing Black Panther.
+                </p>
+                <div class="artworks-container" id="artist1-artworks">
+                    <div class="artwork">
+                        <img src="theavengers.jpg" 
+                             alt="The Avengers (2012)" class="artwork-image">
+                        <div class="artwork-info">
+                            <h3 class="artwork-title">The Avengers (2012)</h3>
+                            <a href="https://www.imdb.com/title/tt0848228/" class="artwork-link" target="_blank">View Work</a>
+                        </div>
+                    </div>
+                    <div class="artwork">
+                        <img src="blackpanther.jpg" 
+                             alt="Black Panther (2018)" class="artwork-image">
+                        <div class="artwork-info">
+                            <h3 class="artwork-title">Black Panther (2018)</h3>
+                            <a href="https://www.imdb.com/title/tt1825683/" class="artwork-link" target="_blank">View Work</a>
+                        </div>
+                    </div>
+                    <div class="artwork">
+                        <img src="spiderman.jpg" 
+                             alt="Spider-Man" class="artwork-image">
+                        <div class="artwork-info">
+                            <h3 class="artwork-title">Spider-Man</h3>
+                            <a href="https://www.imdb.com/list/ls049852613/" class="artwork-link" target="_blank">View Work</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artist Section 2 -->
+    <section class="artist-section" id="artist2">
+        <div class="artist-container">
+            <div class="artist-image-container">
+                <img src="pheiyong.jpg" 
+                     alt="pheiyong" class="artist-image" id="artist2-image">
+            </div>
+            <div class="artist-info">
+                <h2 class="artist-name">Chan Phei Yong</h2>
+                <p class="artist-bio">
+                    Chan Phei Yong is a Malaysian YouTuber, radio host, actor, and entrepreneur. He was born on February 4, 1994, in Tanah Merah, Kelantan, Malaysia. He first gained recognition as a radio DJ after winning the "MY FM Be My Star" DJ competition in 2015. Later, he transitioned into content creation, launching his own YouTube channel in 2017, where he produces vlogs, short films, and product reviews. 
+                    Chan Phei Yong's YouTube channel is a vibrant mix of entertainment, lifestyle, and music content. He has amassed a significant following, with over 823K subscribers. His videos range from vlogs, interviews, and comedic skits to music collaborations with other Malaysian artists. The videos, variety shows, and commercials he produced are all of high quality. His videos are well-liked by the Chinese people in Malaysia, and the filming angles, editing techniques, and rhythm of the videos are excellent. In addition, the high-quality commercials he shoots are also very popular among advertisers and audiences, so many advertisers like to ask him to shoot commercials. 
+                    Beyond his digital presence, Chan Phei Yong has also ventured into acting, appearing in films and television shows. Additionally, he owns a fashion brand called "Step8ight". His career reflects his versatility, as he continuously explores new creative avenues.
+                </p>
+                <div class="artworks-container" id="artist2-artworks">
+                    <div class="artwork">
+                        <img src="oh.jpg" 
+                             alt="Oh, congratulations" class="artwork-image">
+                        <div class="artwork-info">
+                            <h3 class="artwork-title">Oh, congratulations</h3>
+                            <a href="https://www.youtube.com/watch?v=7qohZ01ntX0" class="artwork-link" target="_blank">View Work</a>
+                        </div>
+                    </div>
+                    <div class="artwork">
+                        <img src="thai.jpg" 
+                             alt="Sawadee Thai Cousin" class="artwork-image">
+                        <div class="artwork-info">
+                            <h3 class="artwork-title">Sawadee Thai Cousin</h3>
+                            <a href="https://youtu.be/24bcWNHYGrE?si=YUreOsZWliLe0eEn" class="artwork-link" target="_blank">View Work</a>
+                        </div>
+                    </div>
+                    <div class="artwork">
+                        <img src="lucky.jpg" 
+                             alt="The Lucky People" class="artwork-image">
+                        <div class="artwork-info">
+                            <h3 class="artwork-title">The Lucky People</h3>
+                            <a href="https://youtu.be/vMtmNeD9ZAQ?si=ZXn36_qOVYak2kO6" class="artwork-link" target="_blank">View Work</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo"><img src="logo.png"></div>
+            <div class="footer-info">
+                <p>TAN LE HANG © 2025 My Personal Page. All rights reserved.</p>
+            <p>Contact: s231420207@studentmail.unimap.edu.my</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Meteor shower animation
+            const meteorContainer = document.getElementById('meteor-shower');
+            
+            function createMeteor() {
+                const meteor = document.createElement('div');
+                meteor.classList.add('meteor');
+                
+                // Random position
+                const startX = Math.random() * 100;
+                const startY = Math.random() * 100;
+                meteor.style.left = `${startX}%`;
+                meteor.style.top = `${startY}%`;
+                
+                // Random delay
+                meteor.style.animationDelay = `${Math.random() * 2}s`;
+                
+                meteorContainer.appendChild(meteor);
+                
+                // Remove meteor after animation
+                setTimeout(() => {
+                    meteor.remove();
+                }, 3000);
+            }
+            
+            // Create initial meteors
+            for (let i = 0; i < 10; i++) {
+                setTimeout(createMeteor, i * 300);
+            }
+            
+            // Continue creating meteors
+            setInterval(createMeteor, 300);
+            
+            // Artist image hover to change picture
+            const artist1Image = document.getElementById('artist1-image');
+            const artist2Image = document.getElementById('artist2-image');
+            
+            const artist1Images = [
+                'kevinfeige2.jpg',
+                'kevinfeige3.jpg',
+                'kevinfeige4.jpg'
+            ];
+            
+            const artist2Images = [
+                'pheiyong2.jpg',
+                'pheiyong3.jpg',
+                'pheiyong4.jpg'
+            ];
+            
+            let artist1Index = 0;
+            let artist2Index = 0;
+            
+            artist1Image.addEventListener('mouseenter', function() {
+                artist1Index = (artist1Index + 1) % artist1Images.length;
+                this.src = artist1Images[artist1Index];
+            });
+            
+            artist2Image.addEventListener('mouseenter', function() {
+                artist2Index = (artist2Index + 1) % artist2Images.length;
+                this.src = artist2Images[artist2Index];
+            });
+            
+            // Toggle artwork visibility when clicking artist image
+            artist1Image.addEventListener('click', function() {
+                const artworks = document.getElementById('artist1-artworks');
+                artworks.classList.toggle('visible');
+            });
+            
+            artist2Image.addEventListener('click', function() {
+                const artworks = document.getElementById('artist2-artworks');
+                artworks.classList.toggle('visible');
+            });
+            
+            // Scroll animations
+            const animateOnScroll = () => {
+                document.querySelectorAll('.artist-section').forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top < window.innerHeight * 0.75) {
+                        section.classList.add('visible');
+                    }
+                });
+            };
+            
+            // Initial check
+            animateOnScroll();
+            
+            // Listen for scroll events
+            window.addEventListener('scroll', animateOnScroll);
+        });
+    </script>
+</body>
+</html>

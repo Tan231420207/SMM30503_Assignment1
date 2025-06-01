@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dream Career</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Verdana, sans-serif;
+        }
+
+        body{
+            background-color: #a6c9ce;
+            color: #242d35;
+            overflow-x: hidden;
+        }
+
+        nav{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            background-color: #667384;
+            box-shadow: 0 2px 10px #0000001a;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .MyLogo img{
+            height: auto;
+            width: 35px;
+        }
+
+        .Navigation{
+            display: flex;
+            gap: 30px;
+        }
+
+        .Navigation a{
+            text-decoration: none;
+            color: #a6c9ce;
+            font-weight: 500;
+            transition: 0.3s;
+            padding: 5px 10px;
+            border-radius: 99px;
+        }
+
+        .Navigation a:hover{
+            background: #242d35;
+        }    
+
+        .image-btn{
+            padding: 2px 4px;
+            border: none;
+            border-radius: 200px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .image-btn:hover{
+            background-color: #242d35;
+        }
+
+        .image-btn img {
+            width: 30px; 
+            height: auto;
+        }
+
+        .fullscreen-section {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10%;
+            color: white;
+            text-shadow: 2px 2px 4px #00000080;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .section-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            transition: opacity 1s ease;
+        }
+
+        .left-text {
+            font-size: 3rem;
+            text-align: left;
+            max-width: 40%;
+            color: whitesmoke;
+        }
+
+        .right-text {
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: justify;
+            max-width: 40%;
+            color: white;
+        }
+
+        footer{
+            background-color: #667384;
+            color: #a6c9ce;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-content{
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-logo img{
+            width: 40px;
+            height: auto;
+            margin-bottom: 5px;
+        }
+
+        .footer-info p{
+            color: #a6c9ce;
+            margin: 10px 0;
+            font-size: 14px;
+        }        
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="Homepage.html">
+        <div class="MyLogo"><img src="logo.png"></div>
+        </a>
+            <div class="Navigation">
+                <a href="Homepage.html">Home</a>
+                <a href="Dream Career.html">Dream Career</a>
+                <a href="Step by Step Guide.html">Step by Step Guide</a>
+                <a href="Influential Professionals.html">Influential Professionals</a>
+            </div>
+            <a href="Profile.html">
+            <button class="image-btn">
+                <img src="profile.png" alt="Click Me">
+            </button>
+            </a>
+        </a>
+    </nav>    
+
+    <section class="fullscreen-section" id="section1">
+        <div class="section-bg" style="background-image: url(videos.jpg);"></div>
+        <div class="left-text">I would like to become a</div>
+        <div class="right-text" style="font-size: 3rem; text-align: right;">Video Producer</div>
+    </section>
+
+    <section class="fullscreen-section" id="section2">
+        <div class="section-bg" style="background-image: url(img2.jpg);"></div>
+        <div class="left-text">What is video producer?</div>
+        <div class="right-text">Video producers manage and assist with producing video content. This includes planning, filming, adjusting and editing videos and recordings. Video producers can work full time, part-time or freelance and are typically responsible for managing the video production process from beginning to end. Video producers help with a range of tasks, including creative direction, budgeting, writing scripts, arranging logistics, managing deadlines and communicating with various teams and stakeholders.</div>
+    </section>
+
+    <section class="fullscreen-section" id="section3">
+        <div class="section-bg" style="background-image: url(img3.jpg);"></div>
+        <div class="left-text">Reason</div>
+        <div class="right-text">Because I enjoy watching video on social media，movies and so on. I admire people who edit well, think about great content, and have talent.</div>
+    </section>
+
+    <section class="fullscreen-section" id="section4">
+        <div class="section-bg" style="background-image: url(img4.jpg);"></div>
+        <div class="left-text">Passion</div>
+        <div class="right-text">Multifaceted drive to create compelling visual narratives, bringing stories to life through the power of video.</div>
+    </section>
+
+    <section class="fullscreen-section" id="section5">
+        <div class="section-bg" style="background-image: url(image.jpg);"></div>
+        <div class="left-text">Ambition</div>
+        <div class="right-text">To produce high-quality videos or movies that are popular with the public.</div>
+    </section>
+
+    <section class="fullscreen-section" id="section6">
+        <div class="section-bg" style="background-image: url(videos.jpg);"></div>
+        <div class="left-text">Inspiring quote:</div>
+        <div class="right-text">"The future belongs to those who believe in the beauty of their dreams." - Eleanor Roosevelt</div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo"><img src="logo.png"></div>
+            <div class="footer-info">
+                <p>TAN LE HANG © 2025 My Personal Page. All rights reserved.</p>
+            <p>Contact: s231420207@studentmail.unimap.edu.my</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+const sections = document.querySelectorAll('.fullscreen-section'); 
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM fully loaded and parsed!"); // Debugging
+    console.log("Detected sections:", sections);
+    
+    // Initially hide all sections except the first one
+    sections.forEach((section, index) => {
+        if (index !== 0) {
+            section.style.opacity = '0';
+        }
+    });
+});
+
+
+            // Handle scroll events
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.scrollY;
+                const windowHeight = window.innerHeight;
+                
+                sections.forEach((section, index) => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    // Calculate visibility percentage
+                    const visibility = Math.max(0, Math.min(1, 
+                        (scrollPosition + windowHeight - sectionTop) / windowHeight
+                    ));
+                    
+                    // Fade in/out based on scroll position
+                    if (index === 0) {
+                        section.style.opacity = 1 - Math.min(1, scrollPosition / windowHeight);
+                    } else {
+                        const prevSection = sections[index - 1];
+                        const prevSectionBottom = prevSection.offsetTop + prevSection.offsetHeight;
+                        
+                        if (scrollPosition > prevSectionBottom - windowHeight * 0.5) {
+                            section.style.opacity = Math.min(1, 
+                                (scrollPosition - (prevSectionBottom - windowHeight * 0.5)) / (windowHeight * 0.5)
+                            );
+                        } else {
+                            section.style.opacity = '0';
+                        }
+                    }
+                });
+            });
+        </script>    
+</body>

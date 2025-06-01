@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Steps to Success</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Verdana, sans-serif;
+        }
+
+        body{
+            background-color: #a6c9ce;
+            color: #242d35;
+            overflow-x: hidden;
+        }
+
+        nav{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            background-color: #667384;
+            box-shadow: 0 2px 10px #0000001a;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .MyLogo img{
+            height: auto;
+            width: 35px;
+        }
+
+        .Navigation{
+            display: flex;
+            gap: 30px;
+        }
+
+        .Navigation a{
+            text-decoration: none;
+            color: #a6c9ce;
+            font-weight: 500;
+            transition: 0.3s;
+            padding: 5px 10px;
+            border-radius: 99px;
+        }
+
+        .Navigation a:hover{
+            background: #242d35;
+        }    
+
+        .image-btn{
+            padding: 2px 4px;
+            border: none;
+            border-radius: 200px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .image-btn:hover{
+            background-color: #242d35;
+        }
+
+        .image-btn img {
+            width: 30px; 
+            height: auto;
+        }
+
+        /* Header Section */
+        .header-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            position: relative;
+            overflow: hidden;
+            margin-top: 55px;
+        }
+
+        .header-content {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .header-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: white;
+            text-align: center;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: transform 1s ease-out, opacity 1s ease;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-title.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        /* Steps Sections */
+        .steps-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 100px;
+            min-height: 300px;
+            gap: 40px;
+        }
+
+        .step-number {
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--primary);
+            width: 80px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .step-number.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .folder {
+            width: 40%;
+            min-height: 300px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .folder.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .folder-tabs {
+            display: flex;
+            background-color: #f1f3f5;
+            padding: 0.5rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .folder-tab {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .folder-tab:hover {
+            color: var(--primary);
+        }
+
+        .folder-tab.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .folder-image-container {
+            width: 100%;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .folder-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .folder-image.active {
+            opacity: 1;
+        }
+
+        .step-info {
+            flex: 1;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease 0.2s;
+        }
+
+        .step-info.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .step-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .step-desc {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+
+        /* Footer */
+        footer{
+            background-color: #667384;
+            color: #a6c9ce;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-content{
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-logo img{
+            width: 40px;
+            height: auto;
+            margin-bottom: 5px;
+        }
+
+        .footer-info p{
+            color: #a6c9ce;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .step {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .folder {
+                width: 100%;
+            }
+            
+            .step-number {
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="Homepage.html">
+            <div class="MyLogo"><img src="logo.png"></div>
+            </a>
+            <div class="Navigation">
+                <a href="Homepage.html">Home</a>
+                <a href="Dream Career.html">Dream Career</a>
+                <a href="Step by Step Guide.html">Step by Step Guide</a>
+                <a href="Influential Professionals.html">Influential Professionals</a>
+            </div>
+            <a href="Profile.html">
+            <button class="image-btn">
+                <img src="profile.png" alt="Click Me">
+            </button>
+            </a>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="header-section">
+        <div class="header-content">
+            <h1 class="header-title">How to get there?</h1>
+        </div>
+    </section>
+
+    <!-- Steps Sections -->
+    <div class="steps-container">
+        <!-- Step 1 -->
+        <div class="step" id="step1">
+            <div class="step-number">1</div>
+            <div class="folder">
+                <div class="folder-tabs">
+                    <div class="folder-tab active">Education</div>
+                    <div class="folder-tab">Job</div>
+                    <div class="folder-tab">Professional organization</div>
+                </div>
+                <div class="folder-image-container">
+                    <img src="education.jpg" 
+                         alt="Education" class="folder-image active">
+                    <img src="job.jpg" 
+                         alt="Job" class="folder-image">
+                    <img src="organization.jpg" 
+                         alt="Professional organization" class="folder-image">
+                </div>
+            </div>
+            <div class="step-info">
+                <h2 class="step-title">Educational Path</h2>
+                <p class="step-desc">
+                    Although having a university degree is not always necessary, but completing it can be helpful when looking for work. Areas of specialization include television, radio, sound production, film or new media.
+                    There are a range of bachelor's degree courses that provide the technical skills needed for a career in video production and most courses also provide practical experience using a variety of software packages and systems. In addition, students can also learn about the history, practice and critical analysis of film. Some students also have the opportunity to work with national and international artists-in-residence working in various fields of film and screen media production.
+                </p>
+            </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step" id="step2">
+            <div class="step-number">2</div>
+            <div class="folder">
+                <div class="folder-tabs">
+                    <div class="folder-tab">Education</div>
+                    <div class="folder-tab active">Job</div>
+                    <div class="folder-tab">Professional organization</div>
+                </div>
+                <div class="folder-image-container">
+                    <img src="education.jpg" 
+                         alt="Education" class="folder-image">
+                    <img src="job.jpg" 
+                         alt="Job" class="folder-image active">
+                    <img src="organization.jpg" 
+                         alt="Professional organization" class="folder-image">
+                </div>
+            </div>
+            <div class="step-info">
+                <h2 class="step-title">Applying for a Job</h2>
+                <p class="step-desc">
+                    The next step to becoming a video producer is to find a position that fits your level of expertise. For example, you might consider becoming a production assistant, an entry-level position that allows you to build experience and skills. 
+                    Typical tasks include getting actors and crew ready for the day's work or communicating instructions from the producer to the rest of the team. These jobs will give you experience and help you become a video producer in the future.
+                </p>
+            </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step" id="step3">
+            <div class="step-number">3</div>
+            <div class="folder">
+                <div class="folder-tabs">
+                    <div class="folder-tab">Education</div>
+                    <div class="folder-tab">Job</div>
+                    <div class="folder-tab active">Professional organization</div>
+                </div>
+                <div class="folder-image-container">
+                    <img src="education.jpg" 
+                         alt="Education" class="folder-image">
+                    <img src="job.jpg" 
+                         alt="Job" class="folder-image">
+                    <img src="organization.jpg" 
+                         alt="Professional organization" class="folder-image active">
+                </div>
+            </div>
+            <div class="step-info">
+                <h2 class="step-title">Join a professional organization</h2>
+                <p class="step-desc">
+                    Becoming a professional member of the media industry is a great way to build your network. You can also access professional development opportunities, attend networking events, and learn about job opportunities. 
+                    Plus, joining a professional body comes with additional benefits, including the ability to negotiate wages and working conditions, and advocate on your behalf on policy issues relevant to the media industry.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo"><img src="logo.png"></div>
+                <div class="footer-info">
+                    <p>TAN LE HANG © 2025 My Personal Page. All rights reserved.</p>
+                <p>Contact: s231420207@studentmail.unimap.edu.my</p>
+                </div>
+            </div>
+        </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Header title animation on scroll
+            const headerTitle = document.querySelector('.header-title');
+            const headerSection = document.querySelector('.header-section');
+            
+            // Folder tab hover functionality
+            const folderTabs = document.querySelectorAll('.folder-tab');
+            folderTabs.forEach(tab => {
+                tab.addEventListener('mouseenter', function() {
+                    const folder = this.closest('.folder');
+                    const allImages = folder.querySelectorAll('.folder-image');
+                    const tabIndex = Array.from(this.parentElement.children).indexOf(this);
+                    
+                    // Update active tab
+                    folder.querySelectorAll('.folder-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update active image
+                    allImages.forEach((img, index) => {
+                        img.classList.remove('active');
+                        if (index === tabIndex) {
+                            img.classList.add('active');
+                        }
+                    });
+                });
+            });
+
+            // Scroll animations
+            const animateOnScroll = () => {
+                // Header title animation
+                const headerRect = headerSection.getBoundingClientRect();
+                if (headerRect.top < window.innerHeight / 2 && headerRect.bottom > window.innerHeight / 2) {
+                    headerTitle.classList.add('visible');
+                }
+
+                // Step animations
+                document.querySelectorAll('.step').forEach(step => {
+                    const rect = step.getBoundingClientRect();
+                    if (rect.top < window.innerHeight * 0.75) {
+                        step.querySelector('.step-number').classList.add('visible');
+                        step.querySelector('.folder').classList.add('visible');
+                        step.querySelector('.step-info').classList.add('visible');
+                    }
+                });
+            };
+
+            // Initial check
+            animateOnScroll();
+            
+            // Listen for scroll events
+            window.addEventListener('scroll', animateOnScroll);
+        });
+    </script>
+</body>
+</html>
